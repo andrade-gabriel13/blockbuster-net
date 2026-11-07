@@ -48,7 +48,7 @@ Só `nome` é obrigatório. `tipo` aceita `"Filme"` (padrão) ou `"Série"`; `no
 - [Vue 3](https://vuejs.org/) (Composition API: `ref`, `computed`, `watch`), carregado por CDN (cdnjs), sem build e sem npm.
 - HTML + CSS puros em um único arquivo, `index.html`.
 - `localStorage` para persistência.
-- GitHub Pages para hospedagem.
+- GitHub Pages para hospedagem, com deploy via GitHub Actions.
 
 ## Rodar local
 
@@ -61,11 +61,18 @@ python3 -m http.server 8000
 
 ## Publicar no GitHub Pages
 
-Push para o GitHub, depois **Settings → Pages → Source: `main` / `(root)`**.
+O deploy é feito pelo GitHub Actions (`.github/workflows/pages.yml`).
+
+1. Suba o repositório para o GitHub.
+2. Em **Settings → Pages → Build and deployment → Source**, escolha **GitHub Actions** (só na primeira vez).
+3. A cada push na `main` o workflow publica o site. Também dá para rodar manualmente em **Actions → Deploy to GitHub Pages → Run workflow**.
+
+O endereço final aparece no resumo do job e em Settings → Pages (`https://<usuario>.github.io/<repositorio>/`).
 
 ## Estrutura
 
 ```
-index.html   # app completo (template, estilos e lógica)
+index.html                      # app completo (template, estilos e lógica)
 README.md
+.github/workflows/pages.yml     # deploy no GitHub Pages
 ```
